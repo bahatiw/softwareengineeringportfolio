@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'DLMCSPSE01.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dairy_farmersv1',  # Your PostgreSQL database name
+        'NAME': 'dairy_farmersv2',  # Your PostgreSQL database name
         'USER': 'postgres',  # Your PostgreSQL username
         'PASSWORD': 'snoopd',  # Your PostgreSQL password
         'HOST': 'localhost',  # Or '127.0.0.1'

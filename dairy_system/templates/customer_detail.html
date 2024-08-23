@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .detail-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .detail-item {
+            margin-bottom: 20px;
+        }
+        .detail-item span {
+            font-weight: bold;
+        }
+        .actions {
+            text-align: center;
+        }
+        .actions a {
+            margin: 0 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Detail</h1>
+    <div class="detail-container">
+        <div class="detail-item">
+            <span>Customer Name:</span> {{ customer.customer_name }}
+        </div>
+        <div class="detail-item">
+            <span>Contact Number:</span> {{ customer.contact_number }}
+        </div>
+        <div class="actions">
+            <a href="{% url 'customer_update' customer.id %}">Edit</a>
+            <a href="{% url 'customer_delete' customer.id %}">Delete</a>
+        </div>
+    </div>
+</body>
+</html>

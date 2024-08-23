@@ -1,13 +1,61 @@
-{% extends 'dairy_system/base.html' %}
-
-{% block title %}Delete Farmer{% endblock %}
-
-{% block content %}
-<h1>Delete Farmer</h1>
-<p>Are you sure you want to delete "{{ object.name }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Confirm Delete</button>
-    <a href="{% url 'farmer_list' %}" class="btn btn-secondary">Cancel</a>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Farmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Delete Farmer</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{ farmer.first_name }} {{ farmer.second_name }}?</p>
+        <button type="submit">Confirm Delete</button>
+        <a href="{% url 'farmer_list' %}">Cancel</a>
+    </form>
+</body>
+</html>

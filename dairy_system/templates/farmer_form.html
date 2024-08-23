@@ -1,14 +1,60 @@
-{% extends 'dairy_system/base.html' %}
-
-{% block title %}Add/Edit Farmer{% endblock %}
-
-{% block content %}
-<h1>{% if object %}Edit{% else %}Add{% endif %} Farmer</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-<a href="{% url 'farmer_list' %}" class="btn btn-secondary mt-2">Back to list</a>
-{% endblock %}
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Farmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Farmer</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Farmer</button>
+    </form>
+    <a href="{% url 'farmer_list' %}">Back to Farmer List</a>
+</body>
+</html>

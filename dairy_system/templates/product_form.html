@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Farmer Details</title>
+    <title>Add Product</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             color: #333;
             margin-bottom: 40px;
         }
-        div.details {
+        form {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -22,12 +22,19 @@
             max-width: 500px;
             margin: 0 auto;
         }
-        p {
-            font-size: 16px;
-            color: #555;
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
         }
-        strong {
-            color: #333;
+        button:hover {
+            background-color: #45a049;
         }
         a {
             display: block;
@@ -35,7 +42,6 @@
             margin-top: 20px;
             color: #333;
             text-decoration: none;
-            font-weight: bold;
         }
         a:hover {
             color: #4CAF50;
@@ -43,14 +49,12 @@
     </style>
 </head>
 <body>
-    <h2>Farmer Details</h2>
-    <div class="details">
-        <p><strong>First Name:</strong> {{ farmer.first_name }}</p>
-        <p><strong>Second Name:</strong> {{ farmer.second_name }}</p>
-        <p><strong>Member Number:</strong> {{ farmer.member_number }}</p>
-        <p><strong>Date Joined:</strong> {{ farmer.date_joined }}</p>
-        <p><strong>ID Number:</strong> {{ farmer.id_number }}</p>
-    </div>
-    <a href="{% url 'farmer_list' %}">Back to Farmer List</a>
+    <h2>Add Product</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Product</button>
+    </form>
+    <a href="{% url 'product_list' %}">Back to Product List</a>
 </body>
 </html>

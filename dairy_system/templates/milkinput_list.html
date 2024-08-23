@@ -5,13 +5,37 @@
 {% block content %}
 <h1>Milk Inputs</h1>
 <a href="{% url 'milkinput_create' %}" class="btn btn-primary">Add New Milk Input</a>
-<ul class="list-group mt-3">
-    {% for milkinput in object_list %}
-    <li class="list-group-item">
-        <a href="{% url 'milkinput_detail' milkinput.id %}">
-            {{ milkinput.farmer.name }} - {{ milkinput.milk_quantity }} liters
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Member Number</th>
+            <th>First Name</th>
+            <th>Milk Quantity (liters)</th>
+            <th>Production Date</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for milkinput in object_list %}
+        <tr>
+            <td>{{ milkinput.farmer.member_number }}</td>
+            <td>{{ milkinput.farmer.first_name }}</td>
+            <td>{{ milkinput.milk_quantity }}</td>
+            <td>{{ milkinput.production_date }}</td>
+            <td>
+                <a href="{% url 'milkinput_detail' milkinput.id %}" class="btn btn-info btn-sm">View Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2"><strong>Total</strong></td>
+            <td><strong>{{ total_quantity }} liters</strong></td>
+            <td colspan="2"></td>
+        </tr>
+    </tfoot>
+</table>
 {% endblock %}
+

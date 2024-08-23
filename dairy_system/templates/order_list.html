@@ -9,7 +9,7 @@
     {% for order in object_list %}
     <li class="list-group-item">
         <a href="{% url 'order_detail' order.id %}">
-            {{ order.customer.name }} - {{ order.order_quantity }} liters - {{ order.status }}
+            {{ order.customer.customer_name }} - {{ order.order_quantity }} liters - {{ order.status }}
         </a>
     </li>
     {% endfor %}

@@ -1,4 +1,6 @@
 from django.db import models
+import random
+import datetime
 
 # Create your models here.
 from django.contrib.auth.models import User
@@ -45,7 +47,7 @@ class Customer(models.Model):
     contact_number = models.FloatField()
 
     def place_order(self, quantity, status, date):
-        Order.objects.create(customer=self, order_quantity=quantity, status=status, order_date=date)
+        Order.objects.create(customer=self, order_quantity=quantity, status=status)
 
     def receive_order(self, order_id):
         order = Order.objects.get(id=order_id)
@@ -60,23 +62,41 @@ class Manager(models.Model):
         return Inventory.objects.all()
 
 class Farmer(models.Model):
-    name = models.CharField(max_length=255)
-    contact_info = models.FloatField()
+    # Fields
+    first_name = models.CharField(max_length=100)
+    second_name = models.CharField(max_length=100)
+    member_number = models.PositiveIntegerField(unique=True, editable=False)
+    date_joined = models.DateField(auto_now_add=True)
+    id_number = models.FloatField()
 
-    def input_milk_supply(self, quantity, date):
-        MilkInput.objects.create(farmer=self, milk_quantity=quantity, production_date=date)
-
-    def view_milk_supplied(self):
-        return MilkInput.objects.filter(farmer=self)
-
-class MilkInput(models.Model):
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    milk_quantity = models.FloatField()
-    production_date = models.DateField()
+    # Override the save method to generate a 4-digit member_number
+    def save(self, *args, **kwargs):
+        if not self.member_number:
+            self.member_number = random.randint(1000, 9999)
+            while Farmer.objects.filter(member_number=self.member_number).exists():
+                self.member_number = random.randint(1000, 9999)
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Farmer: {self.farmer.name}, Quantity: {self.milk_quantity}, Date: {self.production_date}"
+        return f"{self.first_name} {self.second_name} - {self.member_number}"
 
+    
+class MilkInput(models.Model):
+    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+    milk_quantity = models.DecimalField(max_digits=10, decimal_places=2)
+    production_date = models.DateField(auto_now_add=True)
+    def save(self, *args, **kwargs):
+        # Save the MilkInput instance first
+        super().save(*args, **kwargs)
+
+        # Get or create the Inventory instance
+        # Update the inventory whenever a new FarmMilkInput is saved
+        inventory, created = Inventory.objects.get_or_create(name='Milk')
+        inventory.quantity += self.milk_quantity
+        inventory.save() 
+
+    def __str__(self):
+        return f"Farmer: {self.farmer.First_Name} {self.farmer.Second_Name}, Quantity: {self.milk_quantity}, Date: {self.production_date}"
 class MilkQuality(models.Model):
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     fat_content = models.FloatField()
@@ -92,19 +112,33 @@ class Order(models.Model):
         ('Delivered', 'Delivered'),
         ('Pending', 'Pending'),
     ]
-
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    order_quantity = models.FloatField()
+    order_quantity = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
-    order_date = models.DateField()
+    order_date = models.DateField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        # Save the MilkInput instance first
+        super().save(*args, **kwargs)
+
+        # Get or create the Inventory instance
+        # Update the inventory whenever a new FarmMilkInput is saved
+        inventory, created = Inventory.objects.get_or_create(name='Milk')
+        inventory.quantity -= self.order_quantity
+        inventory.save() 
 
     def __str__(self):
         return f"Customer: {self.customer.customer_name}, Quantity: {self.order_quantity}, Status: {self.status}"
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    def __str__(self):
+        return f"Product_Name: {self.Product_Name}"
 
 class Inventory(models.Model):
-    quantity = models.FloatField()
-    updated_at = models.DateField()
-
+    name = models.CharField(max_length=100)
+    quantity = models.DecimalField(max_digits=10, decimal_places=2)
+    updated_at = models.DateTimeField(auto_now=True)
+ 
     def increase_quantity(self, amount):
         self.quantity += amount
         self.updated_at = models.DateField(auto_now=True)

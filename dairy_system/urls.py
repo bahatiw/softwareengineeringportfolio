@@ -4,7 +4,9 @@ from .views import (
     MilkInputListView, MilkInputDetailView, MilkInputCreateView, MilkInputUpdateView, MilkInputDeleteView,
     MilkQualityListView, MilkQualityDetailView, MilkQualityCreateView, MilkQualityUpdateView, MilkQualityDeleteView,
     OrderListView, OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView,
-    InventoryListView, InventoryDetailView, InventoryCreateView, InventoryUpdateView, InventoryDeleteView,dashboard
+    InventoryListView, InventoryDetailView, InventoryCreateView, InventoryUpdateView, InventoryDeleteView,dashboard,
+    ProductCreateView, ProductListView, ProductDeleteView, ProductDetailView,ProductUpdateView,CustomerListView,CustomerCreateView,
+    CustomerDeleteView,CustomerDetailView,CustomerUpdateView
 )
 
 urlpatterns = [
@@ -38,4 +40,18 @@ urlpatterns = [
     path('inventory/new/', InventoryCreateView.as_view(), name='inventory_create'),
     path('inventory/<int:pk>/edit/', InventoryUpdateView.as_view(), name='inventory_edit'),
     path('inventory/<int:pk>/delete/', InventoryDeleteView.as_view(), name='inventory_delete'),
+
+    path('products/', ProductListView.as_view(), name='product_list'),
+    path('products/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
+    path('products/new/', ProductCreateView.as_view(), name='product_create'),
+    path('products/<int:pk>/edit/', ProductUpdateView.as_view(), name='product_edit'),
+    path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
+
+    path('customer/', CustomerListView.as_view(), name='customer_list'),
+    path('customer/<int:pk>/', CustomerDetailView.as_view(), name='customer_detail'),
+    path('customer/new/', CustomerCreateView.as_view(), name='customer_create'),
+    path('customer/<int:pk>/edit/', CustomerUpdateView.as_view(), name='customer_edit'),
+    path('customer/<int:pk>/delete/', CustomerDeleteView.as_view(), name='customer_delete'),
+
+
 ]
