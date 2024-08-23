@@ -1,0 +1,14 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Milk Quality Test Details{% endblock %}
+
+{% block content %}
+<h1>{{ object.farmer.name }}'s Milk Quality Test</h1>
+<p>Fat Content: {{ object.fat_content }}</p>
+<p>Protein Content: {{ object.protein_content }}</p>
+<p>Date: {{ object.testing_date }}</p>
+<p>Quality Inspector: {{ object.quality_inspector.username }}</p>
+<a href="{% url 'milkquality_edit' object.id %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'milkquality_delete' object.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'milkquality_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

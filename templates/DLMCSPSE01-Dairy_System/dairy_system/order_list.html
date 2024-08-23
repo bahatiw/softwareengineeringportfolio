@@ -1,0 +1,17 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+<h1>Orders</h1>
+<a href="{% url 'order_create' %}" class="btn btn-primary">Place New Order</a>
+<ul class="list-group mt-3">
+    {% for order in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'order_detail' order.id %}">
+            {{ order.customer.name }} - {{ order.order_quantity }} liters - {{ order.status }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

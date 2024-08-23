@@ -1,0 +1,12 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Milk Input Details{% endblock %}
+
+{% block content %}
+<h1>{{ object.farmer.name }}'s Milk Input</h1>
+<p>Quantity: {{ object.milk_quantity }} liters</p>
+<p>Date: {{ object.production_date }}</p>
+<a href="{% url 'milkinput_edit' object.id %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'milkinput_delete' object.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'milkinput_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

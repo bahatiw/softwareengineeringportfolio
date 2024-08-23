@@ -1,0 +1,12 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Inventory Details{% endblock %}
+
+{% block content %}
+<h1>Inventory Details</h1>
+<p>Quantity: {{ object.quantity }} liters</p>
+<p>Last Updated: {{ object.updated_at }}</p>
+<a href="{% url 'inventory_edit' object.id %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'inventory_delete' object.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'inventory_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

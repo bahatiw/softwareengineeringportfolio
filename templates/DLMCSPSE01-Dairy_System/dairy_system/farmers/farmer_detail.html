@@ -1,0 +1,11 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Farmer Details{% endblock %}
+
+{% block content %}
+<h1>{{ object.name }}</h1>
+<p>Contact: {{ object.contact_info }}</p>
+<a href="{% url 'farmer_edit' object.id %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'farmer_delete' object.id %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'farmer_list' %}" class="btn btn-secondary">Back to list</a>
+{% endblock %}

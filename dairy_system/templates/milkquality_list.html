@@ -1,0 +1,17 @@
+{% extends 'dairy_system/base.html' %}
+
+{% block title %}Milk Quality Tests{% endblock %}
+
+{% block content %}
+<h1>Milk Quality Tests</h1>
+<a href="{% url 'milkquality_create' %}" class="btn btn-primary">Add New Quality Test</a>
+<ul class="list-group mt-3">
+    {% for milkquality in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'milkquality_detail' milkquality.id %}">
+            {{ milkquality.farmer.name }} - {{ milkquality.testing_date }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
