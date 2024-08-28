@@ -1,6 +1,6 @@
 # forms
 from django import forms
-from .models import Farmer, MilkInput, Order, Inventory
+from .models import Farmer, MilkInput, Order, Inventory, Customer
 
 class FarmerForm(forms.ModelForm):
     class Meta:
@@ -22,3 +22,7 @@ class InventoryForm(forms.ModelForm):
     class Meta:
         model = Inventory
         fields = ['name','quantity']
+class Customer(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['name','number']

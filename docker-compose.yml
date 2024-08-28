@@ -1,0 +1,42 @@
+
+services:
+  db:
+    image: postgres:latest
+    networks:
+      softwarengineeringv2:
+        ipv4_address: 172.34.0.5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: dairy_farmersv2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: snoopd
+    ports:
+      - "5432:5432"
+
+
+  web:
+    build: .
+    networks:
+      softwarengineeringv2:
+        ipv4_address: 172.34.0.6
+  
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/dairy_system
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL:  postgres://postgres:snoopd@db:5432/dairy_farmersv2
+
+volumes:
+  postgres_data:
+
+networks:
+  softwarengineeringv2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.34.0.0/16

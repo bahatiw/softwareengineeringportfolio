@@ -151,11 +151,11 @@ class CustomerListView(ListView):
 
 class CustomerDetailView(DetailView):
     model = Customer
-    template_name = 'Customer_detail.html'
+    template_name = 'customer_detail.html'
 
 class CustomerCreateView(CreateView):
     model = Customer
-    template_name = 'Customer_form.html'
+    template_name = 'customer_form.html'
     fields = ['customer_name','contact_number']
     success_url = reverse_lazy('customer_list')
 
