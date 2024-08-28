@@ -1,8 +1,7 @@
 from django.urls import path
 from .views import (
     FarmerListView, FarmerDetailView, FarmerCreateView, FarmerUpdateView, FarmerDeleteView,
-    MilkInputListView, MilkInputDetailView, MilkInputCreateView, MilkInputUpdateView, MilkInputDeleteView,
-    MilkQualityListView, MilkQualityDetailView, MilkQualityCreateView, MilkQualityUpdateView, MilkQualityDeleteView,
+    MilkInputListView, MilkInputDetailView, MilkInputCreateView, MilkInputUpdateView, MilkInputDeleteView, 
     OrderListView, OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView,
     InventoryListView, InventoryDetailView, InventoryCreateView, InventoryUpdateView, InventoryDeleteView,dashboard,
     ProductCreateView, ProductListView, ProductDeleteView, ProductDetailView,ProductUpdateView,CustomerListView,CustomerCreateView,
@@ -23,12 +22,7 @@ urlpatterns = [
     path('milkinput/<int:pk>/edit/', MilkInputUpdateView.as_view(), name='milkinput_edit'),
     path('milkinput/<int:pk>/delete/', MilkInputDeleteView.as_view(), name='milkinput_delete'),
 
-    path('milkqualities/', MilkQualityListView.as_view(), name='milkquality_list'),
-    path('milkquality/<int:pk>/', MilkQualityDetailView.as_view(), name='milkquality_detail'),
-    path('milkquality/new/', MilkQualityCreateView.as_view(), name='milkquality_create'),
-    path('milkquality/<int:pk>/edit/', MilkQualityUpdateView.as_view(), name='milkquality_edit'),
-    path('milkquality/<int:pk>/delete/', MilkQualityDeleteView.as_view(), name='milkquality_delete'),
-
+    
     path('orders/', OrderListView.as_view(), name='order_list'),
     path('order/<int:pk>/', OrderDetailView.as_view(), name='order_detail'),
     path('order/new/', OrderCreateView.as_view(), name='order_create'),

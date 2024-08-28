@@ -85,6 +85,11 @@ class MilkInput(models.Model):
     farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
     milk_quantity = models.DecimalField(max_digits=10, decimal_places=2)
     production_date = models.DateField(auto_now_add=True)
+    quality = models.CharField(max_length=50, choices=[
+        ('High', 'High'),
+        ('Medium', 'Medium'),
+        ('Low', 'Low'),
+    ])
     def save(self, *args, **kwargs):
         # Save the MilkInput instance first
         super().save(*args, **kwargs)
@@ -97,15 +102,6 @@ class MilkInput(models.Model):
 
     def __str__(self):
         return f"Farmer: {self.farmer.First_Name} {self.farmer.Second_Name}, Quantity: {self.milk_quantity}, Date: {self.production_date}"
-class MilkQuality(models.Model):
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
-    fat_content = models.FloatField()
-    protein_content = models.FloatField()
-    testing_date = models.DateField()
-    quality_inspector = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Farmer: {self.farmer.name}, Fat: {self.fat_content}, Protein: {self.protein_content}"
 
 class Order(models.Model):
     STATUS_CHOICES = [

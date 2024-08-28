@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Farmer, MilkInput, MilkQuality, Order, Inventory, Customer, Product
+from .models import Farmer, MilkInput, Order, Inventory, Customer, Product
 # Farm Views
 def dashboard(request):
     return render(request, 'dairy_system/base.html')
@@ -54,42 +54,21 @@ class MilkInputDetailView(DetailView):
 class MilkInputCreateView(CreateView):
     model = MilkInput
     template_name = 'milkinput_form.html'
-    fields = ['farmer', 'milk_quantity']
+    fields = ['farmer', 'milk_quantity','quality']
     success_url = reverse_lazy('milkinput_list')
 
 class MilkInputUpdateView(UpdateView):
     model = MilkInput
     template_name = 'milkinput_form.html'
-    fields = ['farmer', 'milk_quantity']
+    fields = ['farmer', 'milk_quantity','quality']
     success_url = reverse_lazy('milkinput_list')
 
 class MilkInputDeleteView(DeleteView):
     model = MilkInput
     template_name = 'milkinput_confirm_delete.html'
     success_url = reverse_lazy('milkinput_list')
-# Milk Quality Views
-class MilkQualityListView(ListView):
-    model = MilkQuality
-    template_name = 'milkquality_list.html'
 
-class MilkQualityDetailView(DetailView):
-    model = MilkQuality
-    template_name = 'milkquality_detail.html'
 
-class MilkQualityCreateView(CreateView):
-    model = MilkQuality
-    template_name = 'milkquality_form.html'
-    fields = ['farmer', 'fat_content', 'protein_content', 'testing_date', 'quality_inspector']
-
-class MilkQualityUpdateView(UpdateView):
-    model = MilkQuality
-    template_name = 'milkquality_form.html'
-    fields = ['farmer', 'fat_content', 'protein_content', 'testing_date', 'quality_inspector']
-
-class MilkQualityDeleteView(DeleteView):
-    model = MilkQuality
-    template_name = 'milkquality_confirm_delete.html'
-    success_url = reverse_lazy('milkquality_list')
 # Order Views
 class OrderListView(ListView):
     model = Order
@@ -127,12 +106,12 @@ class InventoryDetailView(DetailView):
 class InventoryCreateView(CreateView):
     model = Inventory
     template_name = 'inventory_form.html'
-    fields = ['quantity', 'updated_at']
+    fields = ['name','quantity']
 
 class InventoryUpdateView(UpdateView):
     model = Inventory
     template_name = 'inventory_form.html'
-    fields = ['quantity', 'updated_at']
+    fields = ['name','quantity']
 
 class InventoryDeleteView(DeleteView):
     model = Inventory
