@@ -107,11 +107,13 @@ class InventoryCreateView(CreateView):
     model = Inventory
     template_name = 'inventory_form.html'
     fields = ['name','quantity']
+    success_url = reverse_lazy('inventory_list')
 
 class InventoryUpdateView(UpdateView):
     model = Inventory
     template_name = 'inventory_form.html'
     fields = ['name','quantity']
+    success_url = reverse_lazy('inventory_list')
 
 class InventoryDeleteView(DeleteView):
     model = Inventory
