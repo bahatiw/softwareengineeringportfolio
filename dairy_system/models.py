@@ -1,6 +1,7 @@
 from django.db import models
 import random
 import datetime
+import decimal
 
 # Create your models here.
 from django.contrib.auth.models import User
@@ -136,11 +137,13 @@ class Inventory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
  
     def increase_quantity(self, amount):
+        decimal.Decimal(str(amount))
         self.quantity += amount
         self.updated_at = models.DateField(auto_now=True)
         self.save()
 
     def decrease_quantity(self, amount):
+        decimal.Decimal(str(amount))
         self.quantity -= amount
         self.updated_at = models.DateField(auto_now=True)
         self.save()
