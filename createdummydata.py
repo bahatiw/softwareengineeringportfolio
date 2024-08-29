@@ -90,7 +90,7 @@ def create_dummy_customers():
 
         print(f"Created Customer: {customer_name}, Contact Number: {contact_number}")
 if __name__ == '__main__':
-    #create_dummy_inventory()
+    create_dummy_inventory()
     create_dummy_customers()
     create_dummy_farmers()
     create_dummy_milk_inputs()
