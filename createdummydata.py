@@ -74,8 +74,27 @@ def create_dummy_milk_inputs():
             )
 
             print(f"Created Milk Input: Farmer: {farmer.first_name} {farmer.second_name}, Quantity: {milk_input.milk_quantity}, Quality: {milk_input.quality}")
+from dairy_system.models import Customer
 
+def create_dummy_customers():
+    first_names = ['John', 'Jane', 'Alice', 'Bob', 'Charlie', 'David', 'Emma', 'Frank', 'Grace', 'Hannah']
+    last_names = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor']
+
+    for _ in range(10):  # Create 10 dummy customers
+        first_name = random.choice(first_names)
+        last_name = random.choice(last_names)
+        customer_name = f"{first_name} {last_name}"
+        contact_number = random.uniform(700000000, 799999999)
+
+        Customer.objects.create(
+            customer_name=customer_name,
+            contact_number=contact_number
+        )
+
+        print(f"Created Customer: {customer_name}, Contact Number: {contact_number}")
 if __name__ == '__main__':
-    create_dummy_inventory()
+    #create_dummy_inventory()
+    create_dummy_customers()
     create_dummy_farmers()
     create_dummy_milk_inputs()
+    
