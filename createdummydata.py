@@ -36,12 +36,12 @@ from dairy_system.models import Inventory
 
 def create_dummy_inventory():
     # Create a new inventory record with name 'Milk' and quantity 0.00
-    inventory, created = Inventory.objects.get_or_create(product_name='Milk', defaults={'quantity': 0.00})
+    inventory, created = Inventory.objects.get_or_create(name='Milk', defaults={'quantity': 0.00})
 
     if created:
-        print(f'Inventory record created: {inventory.product_name} with quantity {inventory.quantity}')
+        print(f'Inventory record created: {inventory.name} with quantity {inventory.quantity}')
     else:
-        print(f'Inventory record already exists: {inventory.product_name} with quantity {inventory.quantity}')
+        print(f'Inventory record already exists: {inventory.name} with quantity {inventory.quantity}')
 
 
 from dairy_system.models import MilkInput
