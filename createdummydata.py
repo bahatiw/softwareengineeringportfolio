@@ -32,20 +32,17 @@ def create_dummy_farmers():
             print(f'Farmer already exists: {farmer.first_name} {farmer.second_name}, Member Number: {farmer.member_number}')
 
 
-
-from dairy_system.models import Inventory, Product
+from dairy_system.models import Inventory
 
 def create_dummy_inventory():
-    # Ensure 'Milk' product exists in the Product table
-    milk_product, created = Product.objects.get_or_create(name='Milk')
-
-    # Create a new inventory record with quantity 0
-    inventory, created = Inventory.objects.get_or_create(name=milk_product, defaults={'quantity': 0.00})
+    # Create a new inventory record with name 'Milk' and quantity 0.00
+    inventory, created = Inventory.objects.get_or_create(product_name='Milk', defaults={'quantity': 0.00})
 
     if created:
-        print(f'Inventory record created: {inventory.name.name} with quantity {inventory.quantity}')
+        print(f'Inventory record created: {inventory.product_name} with quantity {inventory.quantity}')
     else:
-        print(f'Inventory record already exists: {inventory.name.name} with quantity {inventory.quantity}')
+        print(f'Inventory record already exists: {inventory.product_name} with quantity {inventory.quantity}')
+
 
 from dairy_system.models import MilkInput
 from decimal import Decimal
