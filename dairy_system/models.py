@@ -128,7 +128,7 @@ class Order(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
-        return f"Product_Name: {self.Product_Name}"
+        return f"Product_Name: {self.name}"
 
 class Inventory(models.Model):
     name = models.CharField(max_length=100)
