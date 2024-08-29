@@ -61,7 +61,7 @@ def create_dummy_milk_inputs():
     # Generate random milk inputs for each farmer
     for farmer in farmers:
         for _ in range(random.randint(1, 5)):  # Create 1 to 5 milk inputs per farmer
-            milk_quantity = round(random.uniform(10.0, 100.0), 2)
+            milk_quantity = Decimal(str(round(random.uniform(10.0, 100.0), 2))) 
             quality = random.choice(quality_choices)  # Random quality value
 
             milk_input = MilkInput.objects.create(
