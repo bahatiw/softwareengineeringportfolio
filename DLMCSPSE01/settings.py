@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'dairy_farmersv2',  # Your PostgreSQL database name
         'USER': 'postgres',  # Your PostgreSQL username
         'PASSWORD': 'snoopd',  # Your PostgreSQL password
-        'HOST': '127.0.0.1',  # Or '127.0.0.1'
+        'HOST': '172.34.0.5',  # Or '127.0.0.1'
         'PORT': '5432',  # Default PostgreSQL port
     }
     
