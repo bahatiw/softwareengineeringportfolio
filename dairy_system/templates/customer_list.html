@@ -62,7 +62,7 @@
                 <td>{{ customer.customer_name }}</td>
                 <td>{{ customer.contact_number }}</td>
                 <td>
-                    <a href="{% url 'customer_detail' customer.id %}">Details</a>
+                    <a href="{% url 'customer_edit' customer.id %}">Details</a>
                 </td>
             </tr>
             {% endfor %}
