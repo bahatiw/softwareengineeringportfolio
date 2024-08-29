@@ -133,7 +133,7 @@ class Product(models.Model):
 
 class Inventory(models.Model):
     name = models.CharField(max_length=100)
-    quantity = models.DecimalField(max_digits=10, decimal_places=2,default=0.00)
+    quantity = models.FloatField(default=0.00) 
     updated_at = models.DateTimeField(auto_now=True)
  
     def increase_quantity(self, amount):
